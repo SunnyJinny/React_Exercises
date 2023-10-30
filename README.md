@@ -1,2 +1,2 @@
 # React_Exercises
-nwitter_reloaded
+1. react for begginer - movie app
