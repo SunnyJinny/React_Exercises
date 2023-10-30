@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    //create element 어려운방법 : 첫번째 Argument는 HTML tag 이름과 똑같은 이름.
+    /*
+    const h3 = React.createElement(
+      "h3",
+      {
+        id = "title",
+        onMouseEnter: () => console.log("mouse enter"),
+      },
+      "Hello, I'm a span"
+    );
+    const btn = React.createElement(
+        "button",
+        {
+            onClick: () => console.log("i'm clicked!"), 
+        },
+        "Click Me!"
+        );
+    */
+    //create element 쉬운방법(JSX) : html 문번과 동일. 다른 component에 넣을거라면, 변수형태가 아닌 함수형태여야한다. 중요!
+    const Title = () => (
+      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+        Hello, I'm a span
+      </h3>
+    );
+    const Btn = () => (
+      <button onClick={() => console.log("i'm clicked!")}>Click me!</button>
+    );
+    //여러개의 component를 가지는 component를 생성.
+    //const container = React.createElement("div", null, [Title, Btn]);
+    //container도 JSX로 작성해보자. div안에 위에서 만든 component들을 넣어야 하는데, 이때 component들이 function의 형태여야한다.
+    const Container = (
+      <div>
+        <Title />
+        <Btn />
+      </div>
+    );
+
+    // put in page : javascript에서 만든 element를 root안에 두고 사용자에게 보여줘라. javascript -> html
+    //ReactDOM.render(span, root);
+    ReactDOM.render(Container, root);
+  </script>
+</html>
